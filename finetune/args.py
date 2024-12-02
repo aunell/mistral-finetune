@@ -9,6 +9,7 @@ from simple_parsing.helpers import Serializable
 from model.args import LoraArgs
 
 from .data.args import DataArgs
+import wandb
 
 
 @dataclass
@@ -20,7 +21,7 @@ class OptimArgs(Serializable):
 
 @dataclass
 class WandbArgs(Serializable):
-    project: Optional[str] = None  # Fill this argument to use wandb.
+    project: Optional[str] = None # Fill this argument to use wandb.
     offline: bool = False
     key: Optional[str] = None
     run_name: Optional[str] = None
@@ -31,7 +32,6 @@ class WandbArgs(Serializable):
                 import wandb  # noqa: F401
             except ImportError:
                 raise ImportError("`wandb` not installed. Either make sure `wandb` is installed or set `wandb:project` to None.")
-
             if len(self.project) == 0:
                 raise ValueError("`wandb.project` must not be an empty string.")
 

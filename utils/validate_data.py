@@ -27,7 +27,7 @@ from finetune.data.tokenize import (
     tokenize,
 )
 
-NUM_GPUS = 8
+NUM_GPUS = 1
 
 # EXPECTED WPS for batch_size = 32768 per GPU on H100
 EXPECTED_WPS = {
@@ -158,6 +158,7 @@ def get_train_stats(
 
 def main(args):
     train_args = TrainArgs.load(args.train_yaml)
+    print(f"Loaded train args from {args.train_yaml} ...")
 
     yaml_data_errors = []
     conversation_format_errors = []
@@ -176,6 +177,9 @@ def main(args):
     instruct_tokenizer = MistralTokenizer.v3().instruct_tokenizer
 
     for name, pretrain_file, instruct_file in data:
+        print(f"Validating {name} data ...")
+        print(f"Loading data from {instruct_file} ...")
+        print(f"Loading data from {pretrain_file} ...")
         datasets, weights = parse_data_sources(pretrain_file, instruct_file)
         data_types = [d.sample_type for d in datasets]
         datasets = [str(d.path) for d in datasets]

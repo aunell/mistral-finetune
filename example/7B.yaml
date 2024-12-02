@@ -1,11 +1,11 @@
 # data
 data:
-  instruct_data: ""  # Fill
+  instruct_data: "/share/pi/nigam/users/aunell/mistral-finetune/data/ultrachat_chunk_train.jsonl"  # Fill
   data: ""  # Optionally fill with pretraining data 
-  eval_instruct_data: ""  # Optionally fill
+  eval_instruct_data: "/share/pi/nigam/users/aunell/mistral-finetune/data/ultrachat_chunk_eval.jsonl"  # Optionally fill
 
 # model
-model_id_or_path: ""  # Change to downloaded path
+model_id_or_path: "/share/pi/nigam/users/aunell/mistral-finetune/mistral_models/7B-v0.3"  # Change to downloaded path
 lora:
   rank: 64
 
@@ -27,10 +27,10 @@ ckpt_freq: 100
 
 save_adapters: True  # save only trained LoRA adapters. Set to `False` to merge LoRA adapter into the base model and save full fine-tuned model
 
-run_dir: ""  # Fill
+run_dir: "/share/pi/nigam/users/aunell/mistral-finetune/run5"  # Fill
 
 wandb:
-  project: "" # your wandb project name
-  run_name: "" # your wandb run name
-  key: "" # your wandb api key
+  project: "mistral" # your wandb project name
+  run_name: "test_finetune" # your wandb run name
+  key: "3d73294acb795f0beea6d9c812252bc0b14a1875" # your wandb api key
   offline: False
